@@ -5,6 +5,7 @@ class WhoAmI extends Component {
         super(props);
         this.state = {
             years: 27,
+            inputText: '',
             text: "lalala"
         }
     } 
@@ -26,6 +27,16 @@ class WhoAmI extends Component {
         // эта конструкция не будет перезаписывать state.text, 
         // это автоматом проверяется React и переписывается только то, что нужно
     }
+    nextYear2 = () => {
+        this.setState(state => ({
+            years: state.years + 1
+        }))
+    }
+    commitInputChanges = (e) => {
+        this.setState({
+            inputText: e.target.value
+        })
+    }
 
     render() {
         const {name, surname, link} = this.props;
@@ -34,6 +45,11 @@ class WhoAmI extends Component {
                 <button onClick={this.nextYear}>{this.state.text}</button>
                 <h1>My Name is {name}, surname - {surname}, age - {this.state.years}</h1>
                 <a href={link}>My profile</a>
+                <form>
+                    <span>Введите должность</span>
+                    <input type="text" onChange={this.commitInputChanges} value={this.state.inputText}/>
+                    {/* onInput and onChange the same, but onChange often used */}
+                </form>
             </div>
         )
     }
