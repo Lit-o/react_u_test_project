@@ -2,12 +2,16 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 
 import './employees-list.css';
 
-const EmployeesList = ({data}) => {
+const EmployeesList = ({data, onDelete}) => {
 
     // const elements = data.map(el => <EmployeesListItem name={el.name} salary={el.salary}/>)
     // далее идет еще более сокращенный синтаксис со спреад оператором который раскрывает объект el
     // const {id, ...elProps} = el;
-    const elements = data.map(el => <EmployeesListItem key={el.id} {...el}/>)
+    const elements = data.map(el => <EmployeesListItem 
+        key={el.id} 
+        {...el} 
+        onDelete={() => onDelete(el.id)}/>)
+
     console.log(elements)
 
     return (
