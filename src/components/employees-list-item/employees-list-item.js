@@ -1,42 +1,46 @@
-import { Component } from 'react'
+// import { Component } from 'react'
 
 import './employees-list-item.css';
 
-class EmployeesListItem extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            isIncrease: false,
-            isLike: false
-        }
-    }
+const EmployeesListItem = (props) => {
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         isIncrease: false,
+    //         isLike: false
+    //     }
+    // }
     
-    onIncrease = () => {
-        this.setState(({isIncrease}) => ({
-            isIncrease: !isIncrease
-        }))
-    }
+    // onIncrease = () => {
+    //     this.setState(({isIncrease}) => ({
+    //         isIncrease: !isIncrease
+    //     }))
+    // }
+    // onLike = () => {
+    //     this.setState(({isLike}) => ({
+    //         isLike: !isLike
+    //     }))
+    // }
+    // const {isIncrease} = this.state;
+    // const {isLike} = this.state;
+    
+        const {name, salary, onDelete, onToggleProp, isIncrease, isRise} = props;
 
-    onLike = () => {
-        this.setState(({isLike}) => ({
-            isLike: !isLike
-        }))
-    }
-    
-    render() {
-        const {name, salary, onDelete} = this.props;
-        const {isIncrease} = this.state;
-        const {isLike} = this.state;
         return (
             <li className={`list-group-item d-flex justify-content-between 
             ${isIncrease && 'increase'} 
-            ${isLike && 'like'}`}>
-                <span className="list-group-item-label" onClick={this.onLike}>{name}</span>
+            ${isRise && 'like'}`}>
+                <span 
+                className="list-group-item-label" 
+                onClick={onToggleProp} 
+                data-toggle="isRise">{name}
+                </span>
                 <input type="text" className="list-group-item-input" defaultValue={`${salary}$`}/>
                 <div className='d-flex justify-content-center align-items-center'>
                     <button type="button"
                         className="btn-cookie btn-sm "
-                        onClick={this.onIncrease}>
+                        onClick={onToggleProp}
+                        data-toggle="isIncrease">
                         <i className="fas fa-cookie"></i>
                     </button>
     
@@ -49,7 +53,7 @@ class EmployeesListItem extends Component {
                 </div>
             </li>
         )
-    }
+    
 
 
 }

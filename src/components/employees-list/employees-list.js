@@ -2,7 +2,7 @@ import EmployeesListItem from "../employees-list-item/employees-list-item";
 
 import './employees-list.css';
 
-const EmployeesList = ({data, onDelete}) => {
+const EmployeesList = ({data, onDelete, onToggleProp}) => {
 
     // const elements = data.map(el => <EmployeesListItem name={el.name} salary={el.salary}/>)
     // далее идет еще более сокращенный синтаксис со спреад оператором который раскрывает объект el
@@ -10,7 +10,11 @@ const EmployeesList = ({data, onDelete}) => {
     const elements = data.map(el => <EmployeesListItem 
         key={el.id} 
         {...el} 
-        onDelete={() => onDelete(el.id)}/>)
+        onDelete={() => onDelete(el.id)}
+        // onToggleIncrease={() => {onToggleIncrease(el.id)}}
+        // onToggleRise={() => {onToggleRise(el.id)}}
+        onToggleProp={(e) => onToggleProp(el.id, e.currentTarget.getAttribute("data-toggle"))}
+        />)
 
     console.log(elements)
 
