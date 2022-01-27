@@ -16,7 +16,7 @@ const EmployeesList = ({data, onDelete, onToggleProp}) => {
         onToggleProp={(e) => onToggleProp(el.id, e.currentTarget.getAttribute("data-toggle"))}
         />)
 
-    console.log(elements)
+    // console.log(elements)
 
     return (
         <ul className="app-list list-group">

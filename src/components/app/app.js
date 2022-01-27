@@ -14,13 +14,15 @@ class App extends Component {
         this.state = {
             data: [
                 { name: 'John Mn', salary: 800, isIncrease: false, isRise: true, id: 1 },
-                { name: 'Johny N', salary: 1800, isIncrease: true, isRise: false, id: 2 },
-                { name: 'Johnsy L', salary: 3800, isIncrease: false, isRise: false, id: 3 },
+                { name: 'Aohny N', salary: 1800, isIncrease: true, isRise: false, id: 2 },
+                { name: 'Bohbsy L', salary: 3800, isIncrease: false, isRise: false, id: 3 },
             ],  
-            maxId: 4      
+            term: '',
+            maxId: 4,
+            filterStatus: 'off'      
         }
     }
-
+    
     onDeleteItem = (id) => {
         this.setState(({data}) => {
             // const index = data.findIndex(el => el.id === id)
@@ -97,21 +99,53 @@ class App extends Component {
         }))
     }
 
-    render() {
+    onSearch = (items, term) => {
+        if (term.length === 0) {
+            return items;
+        }
+        return items.filter(item => {
+            return item.name.indexOf(term) > -1
+        })
+    }
+
+    onFilter = (items, filterStatus) => {
+        switch(filterStatus) {
+            case 'off':
+                return items;
+            case 'rise':
+                return items.filter(item => item.isRise)
+            case 'over1000':
+                return items.filter(item => item.salary > 1000)
+        }
+    }
+
+    onUpdateSearch = (term) => {
+        this.setState({term});
+    }
+
+    switchFilterStatus = (filterStatus) => {
+        this.setState({filterStatus});
+    }
+
+    render() {        
+        const {data, term, filterStatus} = this.state;
         const emloyees = this.state.data.length;
-        const increased = this.state.data.filter(el => el.isIncrease).length
+        const increased = this.state.data.filter(el => el.isIncrease).length;
+        // const visibleData = this.onSearch(data, term);
+        const visibleData = this.onFilter(this.onSearch(data, term), filterStatus)
+        console.log(filterStatus)
 
         return (
             <div className="app">
                 <AppInfo emloyees={emloyees} increased={increased}/>
                 <div className="search-pannel">
-                    <SearchPanel />
-                    <AppFilter />
+                    <SearchPanel onUpdateSearch={this.onUpdateSearch} />
+                    <AppFilter switchFilterStatus={this.switchFilterStatus} filterStatus={filterStatus}/>
                 </div>
     
     
                 <EmployeesList
-                    data={this.state.data}
+                    data={visibleData}
                     onDelete={this.onDeleteItem}
                     // onToggleIncrease={this.onToggleIncrease}
                     // onToggleRise={this.onToggleRise}

@@ -8,6 +8,7 @@ class WhoAmI extends Component {
             inputText: '',
             text: "lalala"
         }
+        this.nextYear2 = this.nextYear2.bind(this);
     } 
     // конструктор если нам нужны только props не обязательно вызывать
 
@@ -27,12 +28,12 @@ class WhoAmI extends Component {
         // эта конструкция не будет перезаписывать state.text, 
         // это автоматом проверяется React и переписывается только то, что нужно
     }
-    nextYear2 = () => {
+    nextYear2 () {
         this.setState(state => ({
             years: state.years + 1
         }))
     }
-    commitInputChanges = (e) => {
+    commitInputChanges = (e, color) => {
         this.setState({
             inputText: e.target.value
         })
@@ -47,7 +48,7 @@ class WhoAmI extends Component {
                 <a href={link}>My profile</a>
                 <form>
                     <span>Введите должность</span>
-                    <input type="text" onChange={this.commitInputChanges} value={this.state.inputText}/>
+                    <input type="text" onChange={(e) => this.commitInputChanges(e, 'some color')} value={this.state.inputText}/>
                     {/* onInput and onChange the same, but onChange often used */}
                 </form>
             </div>
