@@ -9,19 +9,33 @@ import SearchPanel from '../search-panel/search-panel';
 import './app.css';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [
-                { name: 'John Mn', salary: 800, isIncrease: false, isRise: true, id: 1 },
-                { name: 'Aohny N', salary: 1800, isIncrease: true, isRise: false, id: 2 },
-                { name: 'Bohbsy L', salary: 3800, isIncrease: false, isRise: false, id: 3 },
-            ],  
-            term: '',
-            maxId: 4,
-            filterStatus: 'off'      
-        }
+    // constructor(props) {
+    //     super(props);
+    //     this.state = {
+    //         data: [
+    //             { name: 'John Mn', salary: 800, isIncrease: false, isRise: true, id: 1 },
+    //             { name: 'Aohny N', salary: 1800, isIncrease: true, isRise: false, id: 2 },
+    //             { name: 'Bohbsy L', salary: 3800, isIncrease: false, isRise: false, id: 3 },
+    //         ],  
+    //         term: '',
+    //         maxId: 4,
+    //         filterStatus: 'off'      
+    //     }
+    // }
+
+    // в новом экспериментальном стиле стейт можно задавать 
+    // без конструктора, должны ввести в стандарт в 2022...
+    state = {
+        data: [
+            { name: 'John Mn', salary: 800, isIncrease: false, isRise: true, id: 1 },
+            { name: 'Aohny N', salary: 1800, isIncrease: true, isRise: false, id: 2 },
+            { name: 'Bohbsy L', salary: 3800, isIncrease: false, isRise: false, id: 3 },
+        ],  
+        term: '',
+        maxId: 4,
+        filterStatus: 'off'      
     }
+    
     
     onDeleteItem = (id) => {
         this.setState(({data}) => {
