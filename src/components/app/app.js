@@ -143,7 +143,6 @@ class App extends Component {
                     <AppFilter switchFilterStatus={this.switchFilterStatus} filterStatus={filterStatus}/>
                 </div>
     
-    
                 <EmployeesList
                     data={visibleData}
                     onDelete={this.onDeleteItem}
@@ -155,7 +154,6 @@ class App extends Component {
             </div>
         );
     }
-
 }
 
 export default App
