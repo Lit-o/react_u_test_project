@@ -3,9 +3,6 @@ import "./app-filter.css"
 const AppFilter = ({switchFilterStatus, filterStatus}) => {
     
     const onFilterChange = (e) => {
-        // e.currentTarget.classList.remove('btn-outline-light')
-        // e.currentTarget.classList.add('btn-light')
-
         const currentFilterStatus = e.currentTarget.getAttribute("data-filter-status")
         switchFilterStatus(currentFilterStatus)
     }
